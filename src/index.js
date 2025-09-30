@@ -3,10 +3,10 @@ import Home from './Home.vue';
 import PublicLayout from './PublicLayout.vue';
 import Login from './Login.vue';
 import SmartHomeIntro from './SmartHomeIntro.vue';
-import SmartDevices from './SmartDevices.vue';
-import ScenarioApplications from './ScenarioApplications.vue';
-import FutureTrends from './FutureTrends.vue';
-import UserProfile from './UserProfile.vue';
+import SmartDevices from './dashboard/SmartDevices.vue';
+import ScenarioApplications from './dashboard/ScenarioApplications.vue';
+import FutureTrends from './dashboard/FutureTrends.vue';
+import UserProfile from './dashboard/UserProfile.vue';
 
 const routes = [
   {

@@ -4,7 +4,7 @@
       <nav class="tabs">
         <router-link to="/dashboard/smart-devices">智慧裝置</router-link>
         <router-link to="/dashboard/scenario-applications">情境應用</router-link>
-        <router-link to="/dashboard/future-trends">未来趨勢</router-link>
+        <router-link to="/dashboard/future-trends">未來趨勢</router-link>
         <router-link to="/dashboard/user-profile">使用者資訊</router-link>
       </nav>
       <button @click="handleLogout" class="logout-button">登出</button>
