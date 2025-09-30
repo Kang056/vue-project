@@ -1,7 +1,7 @@
 <template>
   <div class="intro-container">
     <!-- Hero Section -->
-    <header class="hero-section" style="background-image: linear-gradient(rgba(240, 173, 78, 0.2), rgba(253, 242, 226, 0.8)), url('https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=2070&auto=format&fit=crop');">
+    <header class="hero-section">
       <div class="hero-content">
         <h1 class="hero-title">歡迎來到未來之家</h1>
         <p class="hero-subtitle">探索智慧家庭如何讓您的生活更便利、更舒適、更安全。</p>
@@ -15,7 +15,7 @@
           <img src="https://lh7-us.googleusercontent.com/EBwMRhFePyi2lOYWVAcLG5-R6KNJNpi0Twb-zZy11Owcisd6zfbD5-SJiwpdZjp_-_dZDK8ppocYAX5Al6Evgk4UxPI3am77RuLTsBFQpggRe7EzrvafOdkYrI6ct43J50UL949y7TEspZ7CmnJgU-8" alt="Connectivity">
         </div>
         <div class="feature-text">
-          <h2 style="color: #d35400;">核心概念：互聯互通</h2>
+          <h2 class="feature-title-highlight">核心概念：互聯互通</h2>
           <p>透過 Wi-Fi, Bluetooth, Zigbee, Matter 等通訊協定，讓不同品牌的設備能夠互相溝通與協作，打造無縫的智慧生態系。</p>
         </div>
       </section>
@@ -25,7 +25,7 @@
           <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1920&auto=format&fit=crop" alt="Automation">
         </div>
         <div class="feature-text">
-          <h2 style="color: #d35400;">核心概念：自動化</h2>
+          <h2 class="feature-title-highlight">核心概念：自動化</h2>
           <p>根據預設的規則、時間或感測器數據（如溫濕度、光線、人體活動），自動執行特定任務，例如「日落時自動開燈」，讓家為您服務。</p>
         </div>
       </section>
@@ -35,7 +35,7 @@
           <img src="https://panyi-architecture.com/wp-content/uploads/2020/09/image2-2.jpg" alt="Remote Control">
         </div>
         <div class="feature-text">
-          <h2 style="color: #d35400;">核心概念：遠端控制</h2>
+          <h2 class="feature-title-highlight">核心概念：遠端控制</h2>
           <p>使用者可以透過智慧型手機、平板或語音助理，隨時隨地監控和控制家中的設備，一切盡在掌握。</p>
         </div>
       </section>
@@ -96,6 +96,7 @@ onMounted(() => {
   height: 60vh;
   background-size: cover;
   background-position: center;
+  background-image: linear-gradient(rgba(240, 173, 78, 0.2), rgba(253, 242, 226, 0.8)), url('https://images.unsplash.com/photo-1558002038-1055907df827?q=80&w=2070&auto=format&fit=crop');
   display: flex;
   align-items: center;
   justify-content: center;
@@ -170,6 +171,9 @@ onMounted(() => {
   font-size: 2rem;
   color: var(--primary-accent);
   margin-bottom: 1rem;
+}
+.feature-title-highlight {
+  color: #d35400;
 }
 
 .feature-text p {
