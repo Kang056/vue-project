@@ -10,6 +10,7 @@ const languages = [
   { name: '简体中文', value: 'zh-CN' },
   { name: 'English', value: 'en' },
   { name: '日本語', value: 'ja' },
+  { name: '한국어', value: 'ko' },
 ];
 // This component uses the global $i18n instance provided by vue-i18n.
 // The v-model directive automatically handles the state management.

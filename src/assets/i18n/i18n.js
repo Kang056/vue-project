@@ -3,12 +3,14 @@ import en from './en';
 import zhTW from './zh-TW';
 import zhCN from './zh-CN';
 import ja from './ja';
+import ko from './ko';
 
 const messages = {
   en,
   'zh-TW': zhTW,
   'zh-CN': zhCN,
   'ja': ja,
+  'ko': ko,
 };
 
 const i18n = createI18n({
