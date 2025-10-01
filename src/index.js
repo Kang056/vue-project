@@ -1,8 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router';
-import Home from './Home.vue';
-import PublicLayout from './PublicLayout.vue';
-import Login from './Login.vue';
-import SmartHomeIntro from './SmartHomeIntro.vue';
+import PrivateLayout from './components/PrivateLayout.vue';
+import PublicLayout from './components/PublicLayout.vue';
+import Login from './components/Login.vue';
+import Home from './components/Home.vue';
 import SmartDevices from './dashboard/SmartDevices.vue';
 import ScenarioApplications from './dashboard/ScenarioApplications.vue';
 import FutureTrends from './dashboard/FutureTrends.vue';
@@ -15,15 +15,15 @@ const routes = [
     children: [
       {
         path: '',
-        name: 'SmartHomeIntro',
-        component: SmartHomeIntro,
+        name: 'Home',
+        component: Home,
       },
     ],
   },
   {
     path: '/dashboard', // 登入後區域
-    name: 'Home',
-    component: Home,
+    name: 'PrivateLayout',
+    component: PrivateLayout,
     meta: { requiresAuth: true },
     children: [
       {

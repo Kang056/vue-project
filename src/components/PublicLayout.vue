@@ -4,10 +4,7 @@
       <div class="logo">{{ $t('platformTitle') }}</div>
       <nav>
         <div class="nav-items">
-          <select v-model="$i18n.locale" class="language-switcher">
-            <option value="zh-TW">繁體中文</option>
-            <option value="en">English</option>
-          </select>
+          <LanguageSwitcher />
           <router-link to="/login" class="login-button">{{ $t('login') }}</router-link>
         </div>
       </nav>
@@ -18,8 +15,8 @@
   </div>
 </template>
 
-<script>
-
+<script setup>
+import LanguageSwitcher from './LanguageSwitcher.vue';
 </script>
 
 <style scoped>
@@ -51,16 +48,6 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-}
-
-.language-switcher {
-  background-color: var(--container-bg);
-  color: var(--text-color);
-  border: 1px solid var(--secondary-accent);
-  border-radius: 4px;
-  padding: 0.4rem 0.6rem;
-  cursor: pointer;
-  font-size: 0.9em;
 }
 
 .login-button {

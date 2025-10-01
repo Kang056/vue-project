@@ -11,10 +11,7 @@
         <router-link to="/dashboard/user-profile">{{ $t('dashboard.userProfile') }}</router-link>
       </nav>
       <div class="header-right">
-        <select v-model="$i18n.locale" class="language-switcher">
-          <option value="zh-TW">繁體中文</option>
-          <option value="en">English</option>
-        </select>
+        <LanguageSwitcher />
         <button @click="handleLogout" class="logout-button">{{ $t('logout') }}</button>
       </div>
     </header>
@@ -26,6 +23,7 @@
 
 <script setup>
 import { useRouter } from 'vue-router';
+import LanguageSwitcher from './LanguageSwitcher.vue';
 
 const router = useRouter();
 
