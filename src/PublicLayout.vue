@@ -1,9 +1,15 @@
 <template>
   <div class="public-layout">
     <header class="public-header">
-      <div class="logo">智慧家庭平台</div>
+      <div class="logo">{{ $t('platformTitle') }}</div>
       <nav>
-        <router-link to="/login" class="login-button">登入</router-link>
+        <div class="nav-items">
+          <select v-model="$i18n.locale" class="language-switcher">
+            <option value="zh-TW">繁體中文</option>
+            <option value="en">English</option>
+          </select>
+          <router-link to="/login" class="login-button">{{ $t('login') }}</router-link>
+        </div>
       </nav>
     </header>
     <main class="public-content">
@@ -11,6 +17,10 @@
     </main>
   </div>
 </template>
+
+<script>
+
+</script>
 
 <style scoped>
 .public-layout {
@@ -35,6 +45,22 @@
   font-size: 1.2rem;
   font-weight: 600;
   color: var(--primary-accent);
+}
+
+.nav-items {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.language-switcher {
+  background-color: var(--container-bg);
+  color: var(--text-color);
+  border: 1px solid var(--secondary-accent);
+  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.9em;
 }
 
 .login-button {

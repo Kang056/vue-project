@@ -3,8 +3,8 @@
     <!-- Hero Section -->
     <header class="hero-section">
       <div class="hero-content">
-        <h1 class="hero-title">歡迎來到未來之家</h1>
-        <p class="hero-subtitle">探索智慧家庭如何讓您的生活更便利、更舒適、更安全。</p>
+        <h1 class="hero-title">{{ t('intro.heroTitle') }}</h1>
+        <p class="hero-subtitle">{{ t('intro.heroSubtitle') }}</p>
       </div>
     </header>
 
@@ -15,8 +15,8 @@
           <img src="https://lh7-us.googleusercontent.com/EBwMRhFePyi2lOYWVAcLG5-R6KNJNpi0Twb-zZy11Owcisd6zfbD5-SJiwpdZjp_-_dZDK8ppocYAX5Al6Evgk4UxPI3am77RuLTsBFQpggRe7EzrvafOdkYrI6ct43J50UL949y7TEspZ7CmnJgU-8" alt="Connectivity">
         </div>
         <div class="feature-text">
-          <h2 class="feature-title-highlight">核心概念：互聯互通</h2>
-          <p>透過 Wi-Fi, Bluetooth, Zigbee, Matter 等通訊協定，讓不同品牌的設備能夠互相溝通與協作，打造無縫的智慧生態系。</p>
+          <h2 class="feature-title-highlight">{{ t('intro.connectivityTitle') }}</h2>
+          <p>{{ t('intro.connectivityText') }}</p>
         </div>
       </section>
 
@@ -25,8 +25,8 @@
           <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1920&auto=format&fit=crop" alt="Automation">
         </div>
         <div class="feature-text">
-          <h2 class="feature-title-highlight">核心概念：自動化</h2>
-          <p>根據預設的規則、時間或感測器數據（如溫濕度、光線、人體活動），自動執行特定任務，例如「日落時自動開燈」，讓家為您服務。</p>
+          <h2 class="feature-title-highlight">{{ t('intro.automationTitle') }}</h2>
+          <p>{{ t('intro.automationText') }}</p>
         </div>
       </section>
 
@@ -35,30 +35,30 @@
           <img src="https://panyi-architecture.com/wp-content/uploads/2020/09/image2-2.jpg" alt="Remote Control">
         </div>
         <div class="feature-text">
-          <h2 class="feature-title-highlight">核心概念：遠端控制</h2>
-          <p>使用者可以透過智慧型手機、平板或語音助理，隨時隨地監控和控制家中的設備，一切盡在掌握。</p>
+          <h2 class="feature-title-highlight">{{ t('intro.remoteControlTitle') }}</h2>
+          <p>{{ t('intro.remoteControlText') }}</p>
         </div>
       </section>
 
       <!-- Advantages Section -->
       <section class="advantages-section">
-        <h2 class="section-title">智慧家庭的優勢</h2>
+        <h2 class="section-title">{{ t('intro.advantagesTitle') }}</h2>
         <div class="advantages-grid">
           <div class="advantage-card">
-            <h3>便利性</h3>
-            <p>一鍵或一句話就能控制多個設備，簡化日常操作。</p>
+            <h3>{{ t('intro.convenience') }}</h3>
+            <p>{{ t('intro.convenienceText') }}</p>
           </div>
           <div class="advantage-card">
-            <h3>節能省電</h3>
-            <p>智慧溫控和照明系統能根據實際需求調整，避免不必要的能源浪費。</p>
+            <h3>{{ t('intro.energySaving') }}</h3>
+            <p>{{ t('intro.energySavingText') }}</p>
           </div>
           <div class="advantage-card">
-            <h3>居家安全</h3>
-            <p>智慧門鎖、監視器和感測器能即時回報家中狀況，提升安全性。</p>
+            <h3>{{ t('intro.security') }}</h3>
+            <p>{{ t('intro.securityText') }}</p>
           </div>
           <div class="advantage-card">
-            <h3>生活品質</h3>
-            <p>自動化的情境模式（如電影、睡眠模式）能營造更舒適的氛圍。</p>
+            <h3>{{ t('intro.qualityOfLife') }}</h3>
+            <p>{{ t('intro.qualityOfLifeText') }}</p>
           </div>
         </div>
       </section>
@@ -67,7 +67,10 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 onMounted(() => {
   const observer = new IntersectionObserver((entries) => {

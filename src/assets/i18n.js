@@ -62,7 +62,25 @@ const messages = {
       editButton: 'Edit Profile',
       membershipLevel: 'Membership Level',
       premiumMember: 'Premium Member'
-    }
+    },
+
+    // FutureTrends.vue
+    futureTrends: {
+      pageTitle: 'Future Trends',
+      matterTitle: 'The Rise of the Matter Protocol',
+      matterText: 'Matter is an open-source smart home connectivity standard aimed at breaking down the barriers between different brand ecosystems. In the future, Matter-supported devices will be able to collaborate more easily, significantly simplifying the setup process and enhancing the user experience.',
+      aiTitle: 'AI and Edge Computing',
+      aiText: 'More and more smart home devices will integrate AI capabilities, allowing them to process data and make decisions locally (at the edge) without complete reliance on the cloud. This not only speeds up response times but also better protects user privacy.',
+      proactiveTitle: 'Proactive Intelligence and Personalization',
+      proactiveText: 'The smart home of the future will not just passively wait for commands but will actively learn your lifestyle patterns and anticipate your needs. For example, automatically brewing coffee and playing the morning news before you usually wake up.',
+      energyTitle: 'Energy Management and Sustainability',
+      energyText: 'With the growing emphasis on sustainability, smart homes will play a more significant role in energy management. The system can integrate solar power generation, energy storage devices, and off-peak electricity pricing information from the grid to automatically optimize home energy use, achieving maximum energy savings and carbon reduction.'
+    },
+
+    // General
+    email: 'Email',
+    joinDate: 'Join Date',
+    save: 'Save'
   },
   'zh-TW': {
     // PublicLayout.vue
@@ -125,7 +143,25 @@ const messages = {
       editButton: '修改資料',
       membershipLevel: '會員等級',
       premiumMember: '高級會員'
-    }
+    },
+
+    // FutureTrends.vue
+    futureTrends: {
+      pageTitle: '未來趨勢',
+      matterTitle: 'Matter 協定的普及',
+      matterText: 'Matter 是一個開放原始碼的智慧家庭連接標準，旨在打破不同品牌生態系之間的壁壘。未來，支援 Matter 的設備將能更輕易地互相協作，大幅簡化設定過程並提升使用者體驗。',
+      aiTitle: 'AI 與邊緣運算',
+      aiText: '越來越多的智慧家庭設備將整合 AI 功能，使其能夠在本地（邊緣端）進行數據處理和決策，而無需完全依賴雲端。這不僅能加快反應速度，也能更好地保護使用者隱私。',
+      proactiveTitle: '主動式智慧與個人化',
+      proactiveText: '未來的智慧家庭將不只是被動地等待指令，而是能主動學習您的生活模式，預測您的需求。例如，在您通常起床的時間前，自動煮好咖啡、播放晨間新聞。',
+      energyTitle: '能源管理與永續性',
+      energyText: '隨著對永續發展的重視，智慧家庭將在能源管理上扮演更重要的角色。系統能整合太陽能發電、儲能設備和電網的離峰電價資訊，自動優化家庭的能源使用，以達到最大程度的節能減碳。'
+    },
+
+    // General
+    email: '電子郵件',
+    joinDate: '帳號建立日期',
+    save: '儲存'
   }
 };
 

@@ -1,51 +1,51 @@
 <template>
   <div class="login-container">
     <div class="login-wrapper">
-      <h2 v-if="!isRegister">登入</h2>
-      <h2 v-else>註冊</h2>
+      <h2 v-if="!isRegister">{{ t('login') }}</h2>
+      <h2 v-else>{{ t('register') }}</h2>
 
       <!-- 登入表單 -->
       <form v-if="!isRegister" @submit.prevent="handleLogin">
         <div class="form-group">
-          <label for="username">使用者名稱:</label>
+          <label for="username">{{ t('username') }}</label>
           <input type="text" id="username" v-model="username" required />
         </div>
         <div class="form-group">
-          <label for="password">密碼:</label>
+          <label for="password">{{ t('password') }}</label>
           <input type="password" id="password" v-model="password" required />
         </div>
         <div class="form-actions">
-          <button class="action-button cancel-button" type="button" @click="handleCancel">取消</button>
-          <button class="action-button login-button" type="submit">登入</button>
+          <button class="action-button cancel-button" type="button" @click="handleCancel">{{ t('cancel') }}</button>
+          <button class="action-button login-button" type="submit">{{ t('login') }}</button>
         </div>
         <p v-if="error" class="error-message">{{ error }}</p>
-        <p class="hint">提示：使用者名稱: user, 密碼: password</p>
+        <p class="hint">{{ t('loginHint') }}</p>
         <div class="toggle-form">
-          還沒有帳號嗎？ <button type="button" @click="isRegister = true" class="link-button">立即註冊</button>
+          {{ t('noAccount') }} <button type="button" @click="isRegister = true" class="link-button">{{ t('registerNow') }}</button>
         </div>
       </form>
 
       <!-- 註冊表單 -->
       <form v-else @submit.prevent="handleRegister">
         <div class="form-group">
-          <label for="reg-username">使用者名稱:</label>
+          <label for="reg-username">{{ t('username') }}</label>
           <input type="text" id="reg-username" v-model="username" required />
         </div>
         <div class="form-group">
-          <label for="reg-password">密碼:</label>
+          <label for="reg-password">{{ t('password') }}</label>
           <input type="password" id="reg-password" v-model="password" required />
         </div>
         <div class="form-group">
-          <label for="reg-confirm-password">確認密碼:</label>
+          <label for="reg-confirm-password">{{ t('confirmPassword') }}</label>
           <input type="password" id="reg-confirm-password" v-model="confirmPassword" required />
         </div>
         <div class="form-actions">
-          <button class="action-button cancel-button" type="button" @click="handleCancel">取消</button>
-          <button class="action-button login-button" type="submit">註冊</button>
+          <button class="action-button cancel-button" type="button" @click="handleCancel">{{ t('cancel') }}</button>
+          <button class="action-button login-button" type="submit">{{ t('register') }}</button>
         </div>
         <p v-if="error" class="error-message">{{ error }}</p>
         <div class="toggle-form">
-          已經有帳號了？ <button type="button" @click="isRegister = false" class="link-button">返回登入</button>
+          {{ t('haveAccount') }} <button type="button" @click="isRegister = false" class="link-button">{{ t('backToLogin') }}</button>
         </div>
       </form>
     </div>
@@ -55,6 +55,9 @@
 <script setup>
 import { ref, watch } from 'vue';
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const isRegister = ref(false);
 const username = ref('');
@@ -76,7 +79,7 @@ const handleLogin = () => {
     localStorage.setItem('isAuthenticated', 'true');
     router.push('/dashboard/smart-devices');
   } else {
-    error.value = '無效的使用者名稱或密碼';
+    error.value = t('errorInvalidCredentials');
   }
 };
 
@@ -86,11 +89,11 @@ const handleCancel = () => {
 
 const handleRegister = () => {
   if (password.value !== confirmPassword.value) {
-    error.value = '兩次輸入的密碼不一致';
+    error.value = t('errorPasswordMismatch');
     return;
   }
   if (users.value.some(user => user.username === username.value)) {
-    error.value = '此使用者名稱已被註冊';
+    error.value = t('errorUserExists');
     return;
   }
 
@@ -99,7 +102,7 @@ const handleRegister = () => {
 
 
   // 這裡僅為範例，實際應用中應呼叫後端 API 進行註冊
-  alert(`註冊成功！\n使用者名稱: ${username.value}\n\n將為您自動登入。`);
+  alert(t('registrationSuccessTitle') + '\n' + t('registrationSuccessMessage', { username: username.value }));
   // 模擬API延遲後再登入，讓使用者能看到alert
   setTimeout(() => {
     // 使用註冊的帳密進行登入
