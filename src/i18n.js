@@ -1,9 +1,9 @@
 import { createI18n } from 'vue-i18n';
-import en from './en';
-import zhTW from './zh-TW';
-import zhCN from './zh-CN';
-import ja from './ja';
-import ko from './ko';
+import en from './assets/i18n/en';
+import zhTW from './assets/i18n/zh-TW';
+import zhCN from './assets/i18n/zh-CN';
+import ja from './assets/i18n/ja';
+import ko from './assets/i18n/ko';
 
 const messages = {
   en,
