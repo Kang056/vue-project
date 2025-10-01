@@ -21,18 +21,18 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { useRouter } from 'vue-router';
 import LanguageSwitcher from './LanguageSwitcher.vue';
 
 const router = useRouter();
 
-const handleLogout = () => {
+const handleLogout = (): void => {
   removeLocallStorage();
   router.push('/');
 };
 
-const removeLocallStorage = () => {
+const removeLocallStorage = (): void => {
   ['isAuthenticated', 'vue-smart-home-devices', 'vue-smart-home-scenarios'].forEach(key => {
     if (localStorage.getItem(key)) {
       localStorage.removeItem(key);

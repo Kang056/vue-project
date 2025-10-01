@@ -45,22 +45,23 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { getScenarios, addScenario, updateScenario, deleteScenarioById } from '../services/scenarioApi';
+import { getScenarios, addScenario, updateScenario, deleteScenarioById } from '@/services/scenarioApi';
+import { Scenario } from '@/services/types';
 
 const { t } = useI18n();
 
-const scenarios = ref([]);
-const isLoading = ref(false);
+const scenarios = ref<Scenario[]>([]);
+const isLoading = ref<boolean>(false);
 
-const searchQuery = ref('');
-const showForm = ref(false);
-const currentScenario = ref({ id: null, name: '', description: '' });
-const isEditing = ref(false);
+const searchQuery = ref<string>('');
+const showForm = ref<boolean>(false);
+const currentScenario = ref<Scenario>({ id: null, name: '', description: '' });
+const isEditing = ref<boolean>(false);
 
-const filteredScenarios = computed(() => {
+const filteredScenarios = computed<Scenario[]>(() => {
   if (!searchQuery.value) {
     return scenarios.value;
   }
@@ -70,29 +71,29 @@ const filteredScenarios = computed(() => {
   );
 });
 
-const fetchScenarios = async () => {
+const fetchScenarios = async (): Promise<void> => {
   isLoading.value = true;
   scenarios.value = await getScenarios();
   isLoading.value = false;
 };
 
-const openAddForm = () => {
+const openAddForm = (): void => {
   isEditing.value = false;
   currentScenario.value = { id: null, name: '', description: '' };
   showForm.value = true;
 };
 
-const openEditForm = (scenario) => {
+const openEditForm = (scenario: Scenario): void => {
   isEditing.value = true;
   currentScenario.value = { ...scenario };
   showForm.value = true;
 };
 
-const closeForm = () => {
+const closeForm = (): void => {
   showForm.value = false;
 };
 
-const saveScenario = async () => {
+const saveScenario = async (): Promise<void> => {
   if (isEditing.value) {
     await updateScenario({ ...currentScenario.value });
   } else {
@@ -102,7 +103,7 @@ const saveScenario = async () => {
   await fetchScenarios();
 };
 
-const deleteScenario = async (id) => {
+const deleteScenario = async (id: number | null): Promise<void> => {
   if (confirm(t('scenarioApps.deleteConfirm'))) {
     await deleteScenarioById(id);
     await fetchScenarios();

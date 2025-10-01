@@ -45,22 +45,23 @@
   </div>
 </template>
 
-<script setup>
+<script setup lang="ts">
 import { ref, computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
-import { getDevices, addDevice, updateDevice, deleteDeviceById } from '../services/deviceApi';
+import { getDevices, addDevice, updateDevice, deleteDeviceById } from '@/services/deviceApi';
+import { Device } from '@/services/types';
 
 const { t } = useI18n();
 
-const devices = ref([]);
-const isLoading = ref(false);
+const devices = ref<Device[]>([]);
+const isLoading = ref<boolean>(false);
 
-const searchQuery = ref('');
-const showForm = ref(false);
-const currentDevice = ref({ id: null, name: '', description: '' });
-const isEditing = ref(false);
+const searchQuery = ref<string>('');
+const showForm = ref<boolean>(false);
+const currentDevice = ref<Device>({ id: null, name: '', description: '' });
+const isEditing = ref<boolean>(false);
 
-const filteredDevices = computed(() => {
+const filteredDevices = computed<Device[]>(() => {
   if (!searchQuery.value) {
     return devices.value;
   }
@@ -70,29 +71,29 @@ const filteredDevices = computed(() => {
   );
 });
 
-const fetchDevices = async () => {
+const fetchDevices = async (): Promise<void> => {
   isLoading.value = true;
   devices.value = await getDevices();
   isLoading.value = false;
 };
 
-const openAddForm = () => {
+const openAddForm = (): void => {
   isEditing.value = false;
   currentDevice.value = { id: null, name: '', description: '' };
   showForm.value = true;
 };
 
-const openEditForm = (device) => {
+const openEditForm = (device: Device): void => {
   isEditing.value = true;
   currentDevice.value = { ...device };
   showForm.value = true;
 };
 
-const closeForm = () => {
+const closeForm = (): void => {
   showForm.value = false;
 };
 
-const saveDevice = async () => {
+const saveDevice = async (): Promise<void> => {
   if (isEditing.value) {
     await updateDevice({ ...currentDevice.value });
   } else {
@@ -102,7 +103,7 @@ const saveDevice = async () => {
   await fetchDevices();
 };
 
-const deleteDevice = async (id) => {
+const deleteDevice = async (id: number | null): Promise<void> => {
   if (confirm(t('smartDevices.deleteConfirm'))) {
     await deleteDeviceById(id);
     await fetchDevices();
