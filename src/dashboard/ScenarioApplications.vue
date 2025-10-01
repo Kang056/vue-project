@@ -52,10 +52,10 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 
 const scenarios = ref([
-  { id: 1, name: '回家模式', description: '當智慧門鎖偵測到您回家時，會自動觸發一系列動作：玄關燈光亮起、客廳空調調整至舒適溫度、智慧音箱播放您喜愛的音樂，並解除保全系統。' },
-  { id: 2, name: '電影模式', description: '一句「Hey Siri，開啟電影模式」，客廳主燈光變暗、氣氛燈帶亮起、電視自動開啟並切換到 Netflix，窗簾緩緩關上，讓您立刻沉浸在影音世界中。' },
-  { id: 3, name: '睡眠模式', description: '設定就寢時間一到，或透過語音指令，所有非必要的燈光將會關閉，臥室夜燈亮起，空調進入舒眠模式，並確認所有門窗都已上鎖。' },
-  { id: 4, name: '外出模式', description: '當您離開家時，系統會自動關閉所有指定的電器和燈光，啟動掃地機器人，並開啟保全警戒模式，確保居家安全與節能。' },
+  { id: 1, name: 'Home Mode', description: 'When the smart lock detects you arriving home, it triggers a series of actions: the entryway light turns on, the living room air conditioner adjusts to a comfortable temperature, the smart speaker plays your favorite music, and the security system is disarmed.' },
+  { id: 2, name: 'Movie Mode', description: 'With a simple "Hey Siri, turn on movie mode," the main living room lights dim, accent light strips turn on, the TV automatically turns on and switches to Netflix, and the curtains slowly close, immersing you in the cinematic world instantly.' },
+  { id: 3, name: 'Sleep Mode', description: 'When bedtime arrives or via a voice command, all non-essential lights will turn off, the bedroom night light will turn on, the air conditioner will enter sleep mode, and it will confirm all doors and windows are locked.' },
+  { id: 4, name: 'Away Mode', description: 'When you leave home, the system automatically turns off all specified appliances and lights, starts the robot vacuum, and activates the security alert mode to ensure home safety and energy savings.' },
 ]);
 
 const searchQuery = ref('');

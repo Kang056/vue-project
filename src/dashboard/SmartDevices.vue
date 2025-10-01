@@ -52,10 +52,10 @@ import { useI18n } from 'vue-i18n';
 const { t } = useI18n();
 
 const devices = ref([
-  { id: 1, name: '智慧照明', description: '使用者可以遠端控制燈光開關、調整亮度與色溫，甚至設定定時排程。智慧燈泡和燈帶是入門智慧家庭最受歡迎的產品之一。' },
-  { id: 2, name: '智慧溫控', description: '智慧溫控器（如 Nest）能學習您的生活習慣，自動調節室內溫度，達到舒適與節能的平衡。' },
-  { id: 3, name: '智慧音箱', description: '作為家庭的中樞，智慧音箱（如 Google Nest, Amazon Echo, Apple HomePod）不僅能播放音樂，還能透過語音指令控制其他智慧設備。' },
-  { id: 4, name: '智慧保全', description: '包含智慧門鎖、監視攝影機、門窗感測器等，提供遠端監控、異常活動偵測與警報功能，提升居家安全。' },
+  { id: 1, name: 'Smart Lighting', description: 'Users can remotely control lights, adjust brightness and color temperature, and even set schedules. Smart bulbs and light strips are among the most popular products for starting a smart home.' },
+  { id: 2, name: 'Smart Thermostat', description: 'Smart thermostats (like Nest) learn your habits and automatically adjust the indoor temperature to balance comfort and energy savings.' },
+  { id: 3, name: 'Smart Speaker', description: 'As the hub of the home, smart speakers (like Google Nest, Amazon Echo, Apple HomePod) not only play music but also control other smart devices via voice commands.' },
+  { id: 4, name: 'Smart Security', description: 'Includes smart locks, surveillance cameras, door/window sensors, etc., providing remote monitoring, abnormal activity detection, and alarm functions to enhance home security.' },
 ]);
 
 const searchQuery = ref('');
