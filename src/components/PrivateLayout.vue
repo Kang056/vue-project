@@ -28,9 +28,17 @@ import LanguageSwitcher from './LanguageSwitcher.vue';
 const router = useRouter();
 
 const handleLogout = () => {
-  localStorage.removeItem('isAuthenticated');
+  removeLocallStorage();
   router.push('/');
 };
+
+const removeLocallStorage = () => {
+  ['isAuthenticated', 'vue-smart-home-devices', 'vue-smart-home-scenarios'].forEach(key => {
+    if (localStorage.getItem(key)) {
+      localStorage.removeItem(key);
+    }
+  });
+}
 </script>
 
 <style scoped>

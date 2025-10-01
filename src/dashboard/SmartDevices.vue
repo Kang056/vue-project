@@ -46,17 +46,14 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { getDevices, addDevice, updateDevice, deleteDeviceById } from '../services/deviceApi';
 
 const { t } = useI18n();
 
-const devices = ref([
-  { id: 1, name: 'Smart Lighting', description: 'Users can remotely control lights, adjust brightness and color temperature, and even set schedules. Smart bulbs and light strips are among the most popular products for starting a smart home.' },
-  { id: 2, name: 'Smart Thermostat', description: 'Smart thermostats (like Nest) learn your habits and automatically adjust the indoor temperature to balance comfort and energy savings.' },
-  { id: 3, name: 'Smart Speaker', description: 'As the hub of the home, smart speakers (like Google Nest, Amazon Echo, Apple HomePod) not only play music but also control other smart devices via voice commands.' },
-  { id: 4, name: 'Smart Security', description: 'Includes smart locks, surveillance cameras, door/window sensors, etc., providing remote monitoring, abnormal activity detection, and alarm functions to enhance home security.' },
-]);
+const devices = ref([]);
+const isLoading = ref(false);
 
 const searchQuery = ref('');
 const showForm = ref(false);
@@ -72,6 +69,12 @@ const filteredDevices = computed(() => {
     device.description.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
+
+const fetchDevices = async () => {
+  isLoading.value = true;
+  devices.value = await getDevices();
+  isLoading.value = false;
+};
 
 const openAddForm = () => {
   isEditing.value = false;
@@ -89,24 +92,23 @@ const closeForm = () => {
   showForm.value = false;
 };
 
-const saveDevice = () => {
+const saveDevice = async () => {
   if (isEditing.value) {
-    const index = devices.value.findIndex(d => d.id === currentDevice.value.id);
-    if (index !== -1) {
-      devices.value[index] = { ...currentDevice.value };
-    }
+    await updateDevice({ ...currentDevice.value });
   } else {
-    currentDevice.value.id = Date.now();
-    devices.value.push({ ...currentDevice.value });
+    await addDevice({ ...currentDevice.value });
   }
   closeForm();
+  await fetchDevices();
 };
 
-const deleteDevice = (id) => {
+const deleteDevice = async (id) => {
   if (confirm(t('smartDevices.deleteConfirm'))) {
-    devices.value = devices.value.filter(d => d.id !== id);
+    await deleteDeviceById(id);
+    await fetchDevices();
   }
 };
+onMounted(fetchDevices);
 </script>
 
 <style scoped>
