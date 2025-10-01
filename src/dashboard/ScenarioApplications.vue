@@ -46,17 +46,14 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue';
+import { ref, computed, onMounted } from 'vue';
 import { useI18n } from 'vue-i18n';
+import { getScenarios, addScenario, updateScenario, deleteScenarioById } from '../services/scenarioApi';
 
 const { t } = useI18n();
 
-const scenarios = ref([
-  { id: 1, name: 'Home Mode', description: 'When the smart lock detects you arriving home, it triggers a series of actions: the entryway light turns on, the living room air conditioner adjusts to a comfortable temperature, the smart speaker plays your favorite music, and the security system is disarmed.' },
-  { id: 2, name: 'Movie Mode', description: 'With a simple "Hey Siri, turn on movie mode," the main living room lights dim, accent light strips turn on, the TV automatically turns on and switches to Netflix, and the curtains slowly close, immersing you in the cinematic world instantly.' },
-  { id: 3, name: 'Sleep Mode', description: 'When bedtime arrives or via a voice command, all non-essential lights will turn off, the bedroom night light will turn on, the air conditioner will enter sleep mode, and it will confirm all doors and windows are locked.' },
-  { id: 4, name: 'Away Mode', description: 'When you leave home, the system automatically turns off all specified appliances and lights, starts the robot vacuum, and activates the security alert mode to ensure home safety and energy savings.' },
-]);
+const scenarios = ref([]);
+const isLoading = ref(false);
 
 const searchQuery = ref('');
 const showForm = ref(false);
@@ -72,6 +69,12 @@ const filteredScenarios = computed(() => {
     scenario.description.toLowerCase().includes(searchQuery.value.toLowerCase())
   );
 });
+
+const fetchScenarios = async () => {
+  isLoading.value = true;
+  scenarios.value = await getScenarios();
+  isLoading.value = false;
+};
 
 const openAddForm = () => {
   isEditing.value = false;
@@ -89,24 +92,24 @@ const closeForm = () => {
   showForm.value = false;
 };
 
-const saveScenario = () => {
+const saveScenario = async () => {
   if (isEditing.value) {
-    const index = scenarios.value.findIndex(s => s.id === currentScenario.value.id);
-    if (index !== -1) {
-      scenarios.value[index] = { ...currentScenario.value };
-    }
+    await updateScenario({ ...currentScenario.value });
   } else {
-    currentScenario.value.id = Date.now();
-    scenarios.value.push({ ...currentScenario.value });
+    await addScenario({ ...currentScenario.value });
   }
   closeForm();
+  await fetchScenarios();
 };
 
-const deleteScenario = (id) => {
+const deleteScenario = async (id) => {
   if (confirm(t('scenarioApps.deleteConfirm'))) {
-    scenarios.value = scenarios.value.filter(s => s.id !== id);
+    await deleteScenarioById(id);
+    await fetchScenarios();
   }
 };
+
+onMounted(fetchScenarios);
 </script>
 
 <style scoped>
