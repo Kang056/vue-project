@@ -1,28 +1,28 @@
 <template>
   <div class="page-container">
-    <h1>情境應用範例</h1>
+    <h1>{{ t('scenarioApps.pageTitle') }}</h1>
 
     <div class="toolbar">
-      <input type="text" v-model="searchQuery" placeholder="搜尋情境..." class="search-bar" />
-      <button @click="openAddForm" class="action-button add-button">新增情境</button>
+      <input type="text" v-model="searchQuery" :placeholder="t('scenarioApps.searchPlaceholder')" class="search-bar" />
+      <button @click="openAddForm" class="action-button add-button">{{ t('scenarioApps.addButton') }}</button>
     </div>
 
     <!-- 新增/修改表單 -->
     <div v-if="showForm" class="form-overlay">
       <div class="form-card">
-        <h2>{{ isEditing ? '修改情境' : '新增情境' }}</h2>
+        <h2>{{ isEditing ? t('scenarioApps.editTitle') : t('scenarioApps.addTitle') }}</h2>
         <form @submit.prevent="saveScenario">
           <div class="form-group">
-            <label for="scenarioName">情境名稱:</label>
+            <label for="scenarioName">{{ t('scenarioApps.nameLabel') }}</label>
             <input id="scenarioName" v-model="currentScenario.name" required />
           </div>
           <div class="form-group">
-            <label for="scenarioDesc">情境描述:</label>
+            <label for="scenarioDesc">{{ t('scenarioApps.descriptionLabel') }}</label>
             <textarea id="scenarioDesc" v-model="currentScenario.description" rows="4" required></textarea>
           </div>
           <div class="form-actions">
-            <button type="submit" class="action-button">{{ isEditing ? '儲存變更' : '新增' }}</button>
-            <button type="button" @click="closeForm" class="action-button cancel-button">取消</button>
+            <button type="submit" class="action-button">{{ isEditing ? t('saveChanges') : t('add') }}</button>
+            <button type="button" @click="closeForm" class="action-button cancel-button">{{ t('cancel') }}</button>
           </div>
         </form>
       </div>
@@ -36,8 +36,8 @@
           <p>{{ scenario.description }}</p>
         </div>
         <div class="card-actions">
-          <button @click="openEditForm(scenario)" class="action-button edit-button">修改</button>
-          <button @click="deleteScenario(scenario.id)" class="action-button delete-button">刪除</button>
+          <button @click="openEditForm(scenario)" class="action-button edit-button">{{ t('edit') }}</button>
+          <button @click="deleteScenario(scenario.id)" class="action-button delete-button">{{ t('delete') }}</button>
         </div>
       </div>
     </div>
@@ -47,6 +47,9 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const scenarios = ref([
   { id: 1, name: '回家模式', description: '當智慧門鎖偵測到您回家時，會自動觸發一系列動作：玄關燈光亮起、客廳空調調整至舒適溫度、智慧音箱播放您喜愛的音樂，並解除保全系統。' },
@@ -100,7 +103,7 @@ const saveScenario = () => {
 };
 
 const deleteScenario = (id) => {
-  if (confirm('確定要刪除此情境嗎？')) {
+  if (confirm(t('scenarioApps.deleteConfirm'))) {
     scenarios.value = scenarios.value.filter(s => s.id !== id);
   }
 };

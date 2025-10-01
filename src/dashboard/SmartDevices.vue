@@ -1,28 +1,28 @@
 <template>
   <div class="page-container">
-    <h1>常見智慧裝置</h1>
+    <h1>{{ t('smartDevices.pageTitle') }}</h1>
 
     <div class="toolbar">
-      <input type="text" v-model="searchQuery" placeholder="搜尋裝置..." class="search-bar" />
-      <button @click="openAddForm" class="action-button add-button">新增裝置</button>
+      <input type="text" v-model="searchQuery" :placeholder="t('smartDevices.searchPlaceholder')" class="search-bar" />
+      <button @click="openAddForm" class="action-button add-button">{{ t('smartDevices.addButton') }}</button>
     </div>
 
     <!-- 新增/修改表單 -->
     <div v-if="showForm" class="form-overlay">
       <div class="form-card">
-        <h2>{{ isEditing ? '修改裝置' : '新增裝置' }}</h2>
+        <h2>{{ isEditing ? t('smartDevices.editTitle') : t('smartDevices.addTitle') }}</h2>
         <form @submit.prevent="saveDevice">
           <div class="form-group">
-            <label for="deviceName">裝置名稱:</label>
+            <label for="deviceName">{{ t('smartDevices.nameLabel') }}</label>
             <input id="deviceName" v-model="currentDevice.name" required />
           </div>
           <div class="form-group">
-            <label for="deviceDesc">裝置描述:</label>
+            <label for="deviceDesc">{{ t('smartDevices.descriptionLabel') }}</label>
             <textarea id="deviceDesc" v-model="currentDevice.description" rows="4" required></textarea>
           </div>
           <div class="form-actions">
-            <button type="submit" class="action-button">{{ isEditing ? '儲存變更' : '新增' }}</button>
-            <button type="button" @click="closeForm" class="action-button cancel-button">取消</button>
+            <button type="submit" class="action-button">{{ isEditing ? t('saveChanges') : t('add') }}</button>
+            <button type="button" @click="closeForm" class="action-button cancel-button">{{ t('cancel') }}</button>
           </div>
         </form>
       </div>
@@ -36,8 +36,8 @@
           <p>{{ device.description }}</p>
         </div>
         <div class="card-actions">
-          <button @click="openEditForm(device)" class="action-button edit-button">修改</button>
-          <button @click="deleteDevice(device.id)" class="action-button delete-button">刪除</button>
+          <button @click="openEditForm(device)" class="action-button edit-button">{{ t('edit') }}</button>
+          <button @click="deleteDevice(device.id)" class="action-button delete-button">{{ t('delete') }}</button>
         </div>
       </div>
     </div>
@@ -47,6 +47,9 @@
 
 <script setup>
 import { ref, computed } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const devices = ref([
   { id: 1, name: '智慧照明', description: '使用者可以遠端控制燈光開關、調整亮度與色溫，甚至設定定時排程。智慧燈泡和燈帶是入門智慧家庭最受歡迎的產品之一。' },
@@ -100,7 +103,7 @@ const saveDevice = () => {
 };
 
 const deleteDevice = (id) => {
-  if (confirm('確定要刪除此裝置嗎？')) {
+  if (confirm(t('smartDevices.deleteConfirm'))) {
     devices.value = devices.value.filter(d => d.id !== id);
   }
 };

@@ -80,7 +80,71 @@ const messages = {
     // General
     email: 'Email',
     joinDate: 'Join Date',
-    save: 'Save'
+    save: 'Save',
+    add: 'Add',
+    edit: 'Edit',
+    delete: 'Delete',
+    saveChanges: 'Save Changes',
+
+    // SmartDevices.vue
+    smartDevices: {
+      pageTitle: 'Common Smart Devices',
+      searchPlaceholder: 'Search devices...',
+      addButton: 'Add Device',
+      addTitle: 'Add New Device',
+      editTitle: 'Edit Device',
+      nameLabel: 'Device Name:',
+      descriptionLabel: 'Device Description:',
+      deleteConfirm: 'Are you sure you want to delete this device?',
+      devices: {
+        lighting: {
+          name: 'Smart Lighting',
+          description: 'Users can remotely control lights, adjust brightness and color temperature, and even set schedules. Smart bulbs and light strips are among the most popular products for starting a smart home.'
+        },
+        thermostat: {
+          name: 'Smart Thermostat',
+          description: 'Smart thermostats (like Nest) learn your habits and automatically adjust the indoor temperature to balance comfort and energy savings.'
+        },
+        speaker: {
+          name: 'Smart Speaker',
+          description: 'As the hub of the home, smart speakers (like Google Nest, Amazon Echo, Apple HomePod) not only play music but also control other smart devices via voice commands.'
+        },
+        security: {
+          name: 'Smart Security',
+          description: 'Includes smart locks, surveillance cameras, door/window sensors, etc., providing remote monitoring, abnormal activity detection, and alarm functions to enhance home security.'
+        }
+      }
+    },
+
+    // ScenarioApplications.vue
+    scenarioApps: {
+      pageTitle: 'Scenario Application Examples',
+      searchPlaceholder: 'Search scenarios...',
+      addButton: 'Add Scenario',
+      addTitle: 'Add New Scenario',
+      editTitle: 'Edit Scenario',
+      nameLabel: 'Scenario Name:',
+      descriptionLabel: 'Scenario Description:',
+      deleteConfirm: 'Are you sure you want to delete this scenario?',
+      scenarios: {
+        home: {
+          name: 'Home Mode',
+          description: 'When the smart lock detects you arriving home, it triggers a series of actions: the entryway light turns on, the living room air conditioner adjusts to a comfortable temperature, the smart speaker plays your favorite music, and the security system is disarmed.'
+        },
+        movie: {
+          name: 'Movie Mode',
+          description: 'With a simple "Hey Siri, turn on movie mode," the main living room lights dim, accent light strips turn on, the TV automatically turns on and switches to Netflix, and the curtains slowly close, immersing you in the cinematic world instantly.'
+        },
+        sleep: {
+          name: 'Sleep Mode',
+          description: 'When bedtime arrives or via a voice command, all non-essential lights will turn off, the bedroom night light will turn on, the air conditioner will enter sleep mode, and it will confirm all doors and windows are locked.'
+        },
+        away: {
+          name: 'Away Mode',
+          description: 'When you leave home, the system automatically turns off all specified appliances and lights, starts the robot vacuum, and activates the security alert mode to ensure home safety and energy savings.'
+        }
+      }
+    }
   },
   'zh-TW': {
     // PublicLayout.vue
@@ -161,7 +225,71 @@ const messages = {
     // General
     email: '電子郵件',
     joinDate: '帳號建立日期',
-    save: '儲存'
+    save: '儲存',
+    add: '新增',
+    edit: '修改',
+    delete: '刪除',
+    saveChanges: '儲存變更',
+
+    // SmartDevices.vue
+    smartDevices: {
+      pageTitle: '常見智慧裝置',
+      searchPlaceholder: '搜尋裝置...',
+      addButton: '新增裝置',
+      addTitle: '新增裝置',
+      editTitle: '修改裝置',
+      nameLabel: '裝置名稱:',
+      descriptionLabel: '裝置描述:',
+      deleteConfirm: '確定要刪除此裝置嗎？',
+      devices: {
+        lighting: {
+          name: '智慧照明',
+          description: '使用者可以遠端控制燈光開關、調整亮度與色溫，甚至設定定時排程。智慧燈泡和燈帶是入門智慧家庭最受歡迎的產品之一。'
+        },
+        thermostat: {
+          name: '智慧溫控',
+          description: '智慧溫控器（如 Nest）能學習您的生活習慣，自動調節室內溫度，達到舒適與節能的平衡。'
+        },
+        speaker: {
+          name: '智慧音箱',
+          description: '作為家庭的中樞，智慧音箱（如 Google Nest, Amazon Echo, Apple HomePod）不僅能播放音樂，還能透過語音指令控制其他智慧設備。'
+        },
+        security: {
+          name: '智慧保全',
+          description: '包含智慧門鎖、監視攝影機、門窗感測器等，提供遠端監控、異常活動偵測與警報功能，提升居家安全。'
+        }
+      }
+    },
+
+    // ScenarioApplications.vue
+    scenarioApps: {
+      pageTitle: '情境應用範例',
+      searchPlaceholder: '搜尋情境...',
+      addButton: '新增情境',
+      addTitle: '新增情境',
+      editTitle: '修改情境',
+      nameLabel: '情境名稱:',
+      descriptionLabel: '情境描述:',
+      deleteConfirm: '確定要刪除此情境嗎？',
+      scenarios: {
+        home: {
+          name: '回家模式',
+          description: '當智慧門鎖偵測到您回家時，會自動觸發一系列動作：玄關燈光亮起、客廳空調調整至舒適溫度、智慧音箱播放您喜愛的音樂，並解除保全系統。'
+        },
+        movie: {
+          name: '電影模式',
+          description: '一句「Hey Siri，開啟電影模式」，客廳主燈光變暗、氣氛燈帶亮起、電視自動開啟並切換到 Netflix，窗簾緩緩關上，讓您立刻沉浸在影音世界中。'
+        },
+        sleep: {
+          name: '睡眠模式',
+          description: '設定就寢時間一到，或透過語音指令，所有非必要的燈光將會關閉，臥室夜燈亮起，空調進入舒眠模式，並確認所有門窗都已上鎖。'
+        },
+        away: {
+          name: '外出模式',
+          description: '當您離開家時，系統會自動關閉所有指定的電器和燈光，啟動掃地機器人，並開啟保全警戒模式，確保居家安全與節能。'
+        }
+      }
+    }
   }
 };
 
