@@ -1,31 +1,31 @@
 <template>
   <div class="page-container">
     <div class="profile-header">
-      <h1>使用者基本資訊</h1>
+      <h1>{{ t('userProfile.pageTitle') }}</h1>
       <button @click="toggleEditMode" class="action-button">
-        {{ isEditing ? '取消' : '修改資料' }}
+        {{ isEditing ? t('cancel') : t('userProfile.editButton') }}
       </button>
     </div>
     <div class="profile-card">
       <div class="profile-item">
-        <span class="label">使用者名稱:</span>
+        <span class="label">{{ t('username') }}</span>
         <span class="value">{{ user.username }}</span>
       </div>
       <div class="profile-item">
-        <span class="label">電子郵件:</span>
+        <span class="label">{{ t('email') }}:</span>
         <input v-if="isEditing" v-model="editableUser.email" type="email" class="edit-input" />
         <span v-else class="value">{{ user.email }}</span>
       </div>
       <div class="profile-item">
-        <span class="label">帳號建立日期:</span>
+        <span class="label">{{ t('joinDate') }}:</span>
         <span class="value">{{ user.joinDate }}</span>
       </div>
       <div class="profile-item">
-        <span class="label">會員等級:</span>
-        <span class="value">{{ user.level }}</span>
+        <span class="label">{{ t('userProfile.membershipLevel') }}:</span>
+        <span class="value">{{ t(user.level) }}</span>
       </div>
       <div v-if="isEditing" class="profile-actions">
-        <button @click="saveProfile" class="action-button save-button">儲存</button>
+        <button @click="saveProfile" class="action-button save-button">{{ t('save') }}</button>
       </div>
     </div>
   </div>
@@ -33,13 +33,16 @@
 
 <script setup>
 import { ref } from 'vue';
+import { useI18n } from 'vue-i18n';
+
+const { t } = useI18n();
 
 const isEditing = ref(false);
 const user = ref({
   username: 'user',
   email: 'user@example.com',
   joinDate: '2024-01-01',
-  level: '高級會員',
+  level: 'userProfile.premiumMember',
 });
 const editableUser = ref({ ...user.value });
 

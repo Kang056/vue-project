@@ -1,13 +1,22 @@
 <template>
   <div class="dashboard-layout">
     <header class="dashboard-header">
+      <div class="header-left">
+        <div class="logo">{{ $t('platformTitle') }}</div>
+      </div>
       <nav class="tabs">
-        <router-link to="/dashboard/smart-devices">智慧裝置</router-link>
-        <router-link to="/dashboard/scenario-applications">情境應用</router-link>
-        <router-link to="/dashboard/future-trends">未來趨勢</router-link>
-        <router-link to="/dashboard/user-profile">使用者資訊</router-link>
+        <router-link to="/dashboard/smart-devices">{{ $t('dashboard.smartDevices') }}</router-link>
+        <router-link to="/dashboard/scenario-applications">{{ $t('dashboard.scenarioApps') }}</router-link>
+        <router-link to="/dashboard/future-trends">{{ $t('dashboard.futureTrends') }}</router-link>
+        <router-link to="/dashboard/user-profile">{{ $t('dashboard.userProfile') }}</router-link>
       </nav>
-      <button @click="handleLogout" class="logout-button">登出</button>
+      <div class="header-right">
+        <select v-model="$i18n.locale" class="language-switcher">
+          <option value="zh-TW">繁體中文</option>
+          <option value="en">English</option>
+        </select>
+        <button @click="handleLogout" class="logout-button">{{ $t('logout') }}</button>
+      </div>
     </header>
     <main class="dashboard-content">
       <router-view />
@@ -45,6 +54,18 @@ const handleLogout = () => {
   flex-shrink: 0;
 }
 
+.header-left, .header-right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: var(--primary-accent);
+}
+
 .tabs {
   display: flex;
   gap: 1rem;
@@ -76,6 +97,16 @@ const handleLogout = () => {
   border-radius: 4px;
   cursor: pointer;
   transition: background-color 0.2s;
+}
+
+.language-switcher {
+  background-color: var(--container-bg);
+  color: var(--text-color);
+  border: 1px solid var(--secondary-accent);
+  border-radius: 4px;
+  padding: 0.4rem 0.6rem;
+  cursor: pointer;
+  font-size: 0.9em;
 }
 
 .logout-button:hover {
