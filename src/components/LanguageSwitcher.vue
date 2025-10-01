@@ -1,12 +1,16 @@
 <template>
   <select v-model="$i18n.locale" class="language-switcher">
-    <option value="zh-TW">繁體中文</option>
-    <option value="zh-CN">简体中文</option>
-    <option value="en">English</option>
+    <option v-for="language in languages" :value="language.value">{{ language.name }}</option>
   </select>
 </template>
 
 <script setup>
+const languages = [
+  { name: '繁體中文', value: 'zh-TW' },
+  { name: '简体中文', value: 'zh-CN' },
+  { name: 'English', value: 'en' },
+  { name: '日本語', value: 'ja' },
+];
 // This component uses the global $i18n instance provided by vue-i18n.
 // The v-model directive automatically handles the state management.
 </script>
