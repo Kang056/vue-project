@@ -2,17 +2,17 @@
   <div class="dashboard-layout">
     <header class="dashboard-header">
       <div class="header-left">
-        <div class="logo">{{ $t('platformTitle') }}</div>
+        <div class="logo">{{ t('platformTitle') }}</div>
       </div>
       <nav class="tabs">
-        <router-link to="/dashboard/smart-devices">{{ $t('dashboard.smartDevices') }}</router-link>
-        <router-link to="/dashboard/scenario-applications">{{ $t('dashboard.scenarioApps') }}</router-link>
+        <router-link to="/dashboard/smart-devices">{{ t('dashboard.smartDevices') }}</router-link>
+        <router-link to="/dashboard/scenario-applications">{{ t('dashboard.scenarioApps') }}</router-link>
         <router-link to="/dashboard/future-trends">{{ $t('dashboard.futureTrends') }}</router-link>
-        <router-link to="/dashboard/user-profile">{{ $t('dashboard.userProfile') }}</router-link>
+        <router-link to="/dashboard/user-profile">{{ t('dashboard.userProfile') }}</router-link>
       </nav>
       <div class="header-right">
         <LanguageSwitcher />
-        <button @click="handleLogout" class="logout-button">{{ $t('logout') }}</button>
+        <button @click="handleLogout" class="logout-button">{{ t('logout') }}</button>
       </div>
     </header>
     <main class="dashboard-content">
@@ -23,8 +23,10 @@
 
 <script setup lang="ts">
 import { useRouter } from 'vue-router';
+import { useI18n } from 'vue-i18n'
 import LanguageSwitcher from './LanguageSwitcher.vue';
 
+const { t } = useI18n()
 const router = useRouter();
 
 const handleLogout = (): void => {

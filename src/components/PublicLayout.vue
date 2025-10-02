@@ -1,11 +1,11 @@
 <template>
   <div class="public-layout">
     <header class="public-header">
-      <div class="logo">{{ $t('platformTitle') }}</div>
+      <div class="logo">{{ t('platformTitle') }}</div>
       <nav>
         <div class="nav-items">
           <LanguageSwitcher />
-          <router-link to="/login" class="login-button">{{ $t('login') }}</router-link>
+          <router-link to="/login" class="login-button">{{ t('login') }}</router-link>
         </div>
       </nav>
     </header>
@@ -17,6 +17,9 @@
 
 <script setup>
 import LanguageSwitcher from './LanguageSwitcher.vue';
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 </script>
 
 <style scoped>
