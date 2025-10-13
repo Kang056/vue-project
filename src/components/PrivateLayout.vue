@@ -1,6 +1,6 @@
 <template>
   <div class="dashboard-layout">
-    <header class="dashboard-header">
+    <header class="dashboard-header" :class="{ 'is-menu-open': isMenuOpen }">
       <div class="header-left">
         <div class="logo">{{ t('platformTitle') }}</div>
       </div>
@@ -14,6 +14,16 @@
         <LanguageSwitcher />
         <button @click="handleLogout" class="logout-button">{{ t('logout') }}</button>
       </div>
+      <div class="mobile-nav-container">
+        <button @click="toggleMenu" class="hamburger-button" aria-label="Toggle menu">
+          <span class="hamburger-icon"></span>
+        </button>
+        <transition name="slide-down">
+          <nav v-if="isMenuOpen" class="mobile-menu">
+            <router-link v-for="link in navLinks" :key="link.to" :to="link.to" @click="closeMenu">{{ link.text }}</router-link>
+          </nav>
+        </transition>
+      </div>
     </header>
     <main class="dashboard-content">
       <router-view />
@@ -22,13 +32,28 @@
 </template>
 
 <script setup lang="ts">
+import { ref, computed } from 'vue';
 import { useRouter } from 'vue-router';
 import { useI18n } from 'vue-i18n'
 import LanguageSwitcher from './LanguageSwitcher.vue';
 
 const { t } = useI18n()
 const router = useRouter();
+const isMenuOpen = ref(false);
 
+const navLinks = computed(() => [
+  { to: '/dashboard/smart-devices', text: t('dashboard.smartDevices') },
+  { to: '/dashboard/scenario-applications', text: t('dashboard.scenarioApps') },
+  { to: '/dashboard/future-trends', text: t('dashboard.futureTrends') },
+  { to: '/dashboard/user-profile', text: t('dashboard.userProfile') }
+]);
+
+const toggleMenu = () => {
+  isMenuOpen.value = !isMenuOpen.value;
+};
+const closeMenu = () => {
+  isMenuOpen.value = false;
+};
 const handleLogout = (): void => {
   removeLocallStorage();
   router.push('/');
@@ -127,16 +152,133 @@ const removeLocallStorage = (): void => {
   padding: 2rem;
 }
 
+.mobile-nav-container {
+  display: none;
+}
+
 @media (max-width: 768px) {
   .dashboard-header {
-    flex-direction: column;
-    padding: 1rem;
-    height: auto;
+    padding: 0 1rem;
+    justify-content: space-between;
   }
-  .tabs {
+
+  .header-left {
+    order: 1;
+  }
+
+  .header-right {
     order: 2;
-    width: 100%;
+  }
+
+  .mobile-nav-container {
+    display: block;
+    order: 3;
+  }
+
+  .tabs {
+    display: none;
+  }
+
+  .header-right {
+    display: none;
+  }
+
+  .logout {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    position: relative;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
     justify-content: center;
+  }
+
+  .hamburger-button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 1rem;
+    position: relative;
+    z-index: 1001;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .hamburger-icon,
+  .hamburger-icon::before,
+  .hamburger-icon::after {
+    content: '';
+    display: block;
+    background-color: var(--text-color);
+    height: 2px;
+    width: 24px;
+    border-radius: 2px;
+    transition: all 0.3s ease-in-out;
+    position: absolute;
+  }
+
+  .hamburger-icon::before {
+    transform: translateY(-8px);
+  }
+
+  .hamburger-icon::after {
+    transform: translateY(8px);
+  }
+
+  .dashboard-header.is-menu-open .hamburger-icon {
+    background-color: transparent;
+  }
+
+  .dashboard-header.is-menu-open .hamburger-icon::before {
+    transform: rotate(45deg);
+  }
+
+  .dashboard-header.is-menu-open .hamburger-icon::after {
+    transform: rotate(-45deg);
+  }
+
+  .mobile-menu {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    background-color: var(--container-bg);
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid var(--secondary-accent);
+    z-index: 1000;
+    padding: 0.5rem 0;
+  }
+
+  .mobile-menu a {
+    padding: 1rem 1.5rem;
+    color: var(--hint-color);
+    text-decoration: none;
+    transition: background-color 0.2s;
+  }
+
+  .mobile-menu a:hover {
+    background-color: var(--secondary-accent);
+    color: var(--text-color);
+  }
+
+  .mobile-menu a.router-link-exact-active {
+    color: var(--primary-accent);
+    font-weight: 600;
+  }
+
+  .slide-down-enter-active,
+  .slide-down-leave-active {
+    transition: transform 0.3s ease-out, opacity 0.3s ease-out;
+  }
+
+  .slide-down-enter-from,
+  .slide-down-leave-to {
+    transform: translateY(-20px);
+    opacity: 0;
   }
 }
 </style>
