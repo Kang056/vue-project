@@ -20,7 +20,13 @@
         </button>
         <transition name="slide-down">
           <nav v-if="isMenuOpen" class="mobile-menu">
-            <router-link v-for="link in navLinks" :key="link.to" :to="link.to" @click="closeMenu">{{ link.text }}</router-link>
+            <div class="mobile-menu-links">
+              <router-link v-for="link in navLinks" :key="link.to" :to="link.to" @click="closeMenu">{{ link.text }}</router-link>
+            </div>
+            <div class="mobile-menu-actions">
+              <LanguageSwitcher />
+              <button @click="handleLogout" class="logout-button">{{ t('logout') }}</button>
+            </div>
           </nav>
         </transition>
       </div>
@@ -55,6 +61,7 @@ const closeMenu = () => {
   isMenuOpen.value = false;
 };
 const handleLogout = (): void => {
+  closeMenu();
   removeLocallStorage();
   router.push('/');
 };
@@ -132,6 +139,10 @@ const removeLocallStorage = (): void => {
   transition: background-color 0.2s;
 }
 
+.logout-button:hover {
+  opacity: 0.9;
+}
+
 .language-switcher {
   background-color: var(--container-bg);
   color: var(--text-color);
@@ -140,10 +151,6 @@ const removeLocallStorage = (): void => {
   padding: 0.4rem 0.6rem;
   cursor: pointer;
   font-size: 0.9em;
-}
-
-.logout-button:hover {
-  opacity: 0.9;
 }
 
 .dashboard-content {
@@ -181,18 +188,6 @@ const removeLocallStorage = (): void => {
 
   .header-right {
     display: none;
-  }
-
-  .logout {
-    background: none;
-    border: none;
-    cursor: pointer;
-    padding: 1rem;
-    position: relative;
-    z-index: 1001;
-    display: flex;
-    align-items: center;
-    justify-content: center;
   }
 
   .hamburger-button {
@@ -246,11 +241,23 @@ const removeLocallStorage = (): void => {
     left: 0;
     width: 100%;
     background-color: var(--container-bg);
-    display: flex;
-    flex-direction: column;
     border-bottom: 1px solid var(--secondary-accent);
     z-index: 1000;
-    padding: 0.5rem 0;
+    padding: 1rem 0;
+  }
+
+  .mobile-menu-links {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .mobile-menu-actions {
+    padding: 1rem 1.5rem 0;
+    margin-top: 1rem;
+    border-top: 1px solid var(--secondary-accent);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
 
   .mobile-menu a {
