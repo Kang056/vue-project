@@ -12,7 +12,7 @@
     <main class="feature-sections">
       <section class="feature-item">
         <div class="feature-image">
-          <img src="https://lh7-us.googleusercontent.com/EBwMRhFePyi2lOYWVAcLG5-R6KNJNpi0Twb-zZy11Owcisd6zfbD5-SJiwpdZjp_-_dZDK8ppocYAX5Al6Evgk4UxPI3am77RuLTsBFQpggRe7EzrvafOdkYrI6ct43J50UL949y7TEspZ7CmnJgU-8" alt="Connectivity">
+          <img src="@/assets/images/connectivity.jpg" alt="Connectivity">
         </div>
         <div class="feature-text">
           <h2 class="feature-title-highlight">{{ t('intro.connectivityTitle') }}</h2>
@@ -22,7 +22,7 @@
 
       <section class="feature-item reverse">
         <div class="feature-image">
-          <img src="https://images.unsplash.com/photo-1524758631624-e2822e304c36?q=80&w=1920&auto=format&fit=crop" alt="Automation">
+          <img src="@/assets/images/automation.avif" alt="Automation">
         </div>
         <div class="feature-text">
           <h2 class="feature-title-highlight">{{ t('intro.automationTitle') }}</h2>
@@ -32,7 +32,7 @@
 
       <section class="feature-item">
         <div class="feature-image">
-          <img src="https://panyi-architecture.com/wp-content/uploads/2020/09/image2-2.jpg" alt="Remote Control">
+          <img src="@/assets/images/control.jpg" alt="Remote Control">
         </div>
         <div class="feature-text">
           <h2 class="feature-title-highlight">{{ t('intro.remoteControlTitle') }}</h2>
